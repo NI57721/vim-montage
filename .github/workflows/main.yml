@@ -26,7 +26,7 @@ jobs:
           vim_version: "${{ matrix.vim_version }}"
       - name: "Install libfuse2"
         run: |
-          sudo apt-install --qq libuse2
+          sudo apt-get install -qq libuse2
       - name: "Show Vim version"
         run: |
           ${{ steps.vim.outputs.executable }} --version
