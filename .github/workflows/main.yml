@@ -9,6 +9,7 @@ jobs:
       matrix:
         vim_version:
           - "head"
+          - "v9.0.0000"
           - "v8.2.0000"
           - "v8.1.0001"
           - "v8.0.0001"
@@ -18,11 +19,14 @@ jobs:
 
     steps:
       - uses: "actions/checkout@v3"
-      - name: "Setup Vim"
+      - name: "Set up Vim"
         id: "vim"
         uses: "thinca/action-setup-vim@v1"
         with:
           vim_version: "${{ matrix.vim_version }}"
+      - name: "Install libfuse2"
+        run: |
+          sudo apt-install --qq libuse2
       - name: "Show Vim version"
         run: |
           ${{ steps.vim.outputs.executable }} --version
