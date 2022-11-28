@@ -24,12 +24,6 @@ jobs:
         uses: "thinca/action-setup-vim@v1"
         with:
           vim_version: "${{ matrix.vim_version }}"
-      - name: "Install libfuse2"
-        run: |
-          sudo apt-get install -qq libuse2
-      - name: "Show Vim version"
-        run: |
-          ${{ steps.vim.outputs.executable }} --version
       - name: "Run test"
         env:
           THEMIS_VIM: ${{ steps.vim.outputs.executable }}
