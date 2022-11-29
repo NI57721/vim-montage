@@ -4,7 +4,7 @@ on: ["push", "pull_request", "workflow_dispatch"]
 
 jobs:
   test:
-    name: "Vim ${{ matrix.vim_version }}"
+    name: "${{ matrix.vim_type }} ${{ matrix.version }} on ${{ matrix.os }}"
     strategy:
       matrix:
         vim_type: ["Vim", "Neovim"]
