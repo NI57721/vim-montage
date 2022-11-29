@@ -16,8 +16,8 @@ jobs:
             vim_version: "v8.2.0000"
     runs-on: "${{ matrix.os }}"
     steps:
-      - uses: "actions/checkout@v2"
-      - name: "Setup Vim"
+      - uses: "actions/checkout@v3"
+      - name: "Set up Vim"
         id: "vim"
         uses: "thinca/action-setup-vim@v1"
         with:
@@ -26,8 +26,13 @@ jobs:
       - name: "Show Vim version"
         run: |
           ${{ steps.vim.outputs.executable }} --version
+      - name: "Set up vim-themis"
+        uses: "actions/checkout@v3"
+        with:
+          repository: thinca/vim-themis
+          path: vim-themis
       - name: "Run test"
         env:
           THEMIS_VIM: ${{ steps.vim.outputs.executable }}
         run: |
-          ./bin/themis --reporter dot
+          ./vim-themis/bin/themis ./test
